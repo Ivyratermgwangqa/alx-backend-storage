@@ -76,6 +76,3 @@ If you encounter errors, check the following:
 If you need further assistance or additional guidance, consult your course instructor, project documentation, or a MySQL expert.
 
 ## License
-This project is intended for educational purposes. Consult your course or project guidelines for licensing and permissions.
-
----
