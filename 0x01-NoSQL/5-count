@@ -1,0 +1,3 @@
+#!/bin/bash
+# Display the number of documents in the collection "school"
+echo 'db.school.count()' | mongo my_db
