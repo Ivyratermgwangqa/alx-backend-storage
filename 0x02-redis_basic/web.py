@@ -6,7 +6,7 @@ This module provides function to fetch & cache web pages with access tracking
 using Redis.
 
 Functions:
-    get_page: Fetch the HTML content of a URL, cache it, and track access count.
+    get_page: Fetch the HTML content of URL, cache it, and track access count.
 """
 
 import requests
@@ -15,6 +15,7 @@ from typing import Callable
 
 # Create a Redis client
 r = redis.Redis()
+
 
 def count_access(method: Callable) -> Callable:
     """
@@ -31,6 +32,7 @@ def count_access(method: Callable) -> Callable:
         return method(url)
     return wrapper
 
+
 @count_access
 def get_page(url: str) -> str:
     """
@@ -45,7 +47,6 @@ def get_page(url: str) -> str:
     cached_page = r.get(f"cache:{url}")
     if cached_page:
         return cached_page.decode('utf-8')
-    
     response = requests.get(url)
     html_content = response.text
     r.setex(f"cache:{url}", 10, html_content)
