@@ -51,10 +51,15 @@ def get_page(url: str) -> str:
     r.setex(f"cache:{url}", 10, html_content)
     return html_content
 
+
 # Testing the implementation
 if __name__ == "__main__":
-    test_url = "http://slowwly.robertomurray.co.uk/delay/5000/url/http://www.example.com"
+    test_url = (
+        "http://slowwly.robertomurray.co.uk/delay/5000/url/"
+        "http://www.example.com"
+    )
     print(get_page(test_url))  # Fetches from the web and caches
     print(get_page(test_url))  # Should return the cached content
     print(get_page(test_url))  # Should return the cached content
-    print(f"Access count for {test_url}: {r.get(f'count:{test_url}').decode('utf-8')}")
+    access_count = r.get(f'count:{test_url}').decode('utf-8')
+    print(f"Access count for {test_url}: {access_count}")
