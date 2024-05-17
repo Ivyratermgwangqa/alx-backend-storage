@@ -86,7 +86,7 @@ class Cache:
     """
     def __init__(self):
         """
-        Initialize  Cache instance by setting Redis client and flushing database.
+        Initialize  Cache instance by setting Redis.
         """
         self._redis = redis.Redis()
         self._redis.flushdb()
@@ -107,8 +107,16 @@ class Cache:
         self._redis.set(key, data)
         return key
 
-    def get(self, key: str, fn: Optional[Callable] = None) -> Union[str, bytes, int, float, None]:
-        """
+    def get(
+    self, key: str, fn: Optional[Callable] = None
+) -> Union[str, bytes, int, float, None]:
+    value = self._redis.get(key)
+    if value is None:
+        return None
+    if fn is not None:
+        return fn(value)
+    return value
+   """
         Retrieve data from Redis and optionally convert it using callable.
 
         Args:
