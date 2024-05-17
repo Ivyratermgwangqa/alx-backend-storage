@@ -73,6 +73,7 @@ def replay(method: Callable):
     for inp, out in zip(inputs, outputs):
         print(f"{method.__qualname__}(*{inp.decode('utf-8')}) -> {out.decode('utf-8')}")
 
+
 class Cache:
     """
     A class for interacting with a Redis database.
@@ -111,11 +112,6 @@ class Cache:
     self, key: str, fn: Optional[Callable] = None
 ) -> Union[str, bytes, int, float, None]:
     value = self._redis.get(key)
-    if value is None:
-        return None
-    if fn is not None:
-        return fn(value)
-    return value
    """
         Retrieve data from Redis and optionally convert it using callable.
 
