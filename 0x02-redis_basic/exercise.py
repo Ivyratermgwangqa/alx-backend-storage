@@ -16,6 +16,7 @@ import uuid
 from typing import Union, Callable, Optional
 import functools
 
+
 def count_calls(method: Callable) -> Callable:
     """
     A decorator that counts the number of times a method is called.
@@ -31,6 +32,7 @@ def count_calls(method: Callable) -> Callable:
         self._redis.incr(method.__qualname__)
         return method(self, *args, **kwargs)
     return wrapper
+
 
 def call_history(method: Callable) -> Callable:
     """
@@ -53,6 +55,7 @@ def call_history(method: Callable) -> Callable:
         return result
 
     return wrapper
+
 
 def replay(method: Callable):
     """
