@@ -16,7 +16,6 @@ import uuid
 from typing import Union, Callable, Optional
 import functools
 
-
 def count_calls(method: Callable) -> Callable:
     """
     A decorator that counts the number of times a method is called.
@@ -130,7 +129,7 @@ class Cache:
             return fn(value)
         return value
         
-    def get_str(self, key: str) -> Optional[str]:
+def get_str(self, key: str) -> Optional[str]:
         """
         Retrieve data as a UTF-8 string.
 
