@@ -1,4 +1,2 @@
-// my comment
-#!/bin/bash
-# Create or use the database "my_db"
-echo 'use my_db' | mongo
+// 1-use_or_create_database.js
+use my_db;
