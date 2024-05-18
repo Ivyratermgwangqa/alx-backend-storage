@@ -1,4 +1,2 @@
-// my comment
-#!/bin/bash
-# Insert a document into the collection "school"
-echo 'db.school.insert({"name": "Holberton school"})' | mongo my_db
+// 2-insert.js
+db.school.insert({ name: "Holberton school" });
