@@ -129,7 +129,8 @@ class Cache:
         if fn is not None:
             return fn(value)
         return value
-        
+
+    
     def get_str(self, key: str) -> Optional[str]:
         """
         Retrieve data as a UTF-8 string.
@@ -153,6 +154,7 @@ class Cache:
             Optional[int]: The retrieved data as an integer.
         """
         return self.get(key, int)
+
 
 # Testing the implementation
 if __name__ == "__main__":
