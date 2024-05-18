@@ -1,4 +1,2 @@
-// my comment
-#!/bin/bash
-# Display the number of documents in the collection "school"
-echo 'db.school.count()' | mongo my_db
+// 5-count.js
+print(db.school.count());
