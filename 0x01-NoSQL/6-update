@@ -1,3 +1,4 @@
+// my comment
 #!/bin/bash
 # Add a new attribute to documents with name="Holberton school" in the collection "school"
 echo 'db.school.update({"name": "Holberton school"}, {$set: {"address": "972 Mission street"}}, {multi: true})' | mongo my_db
