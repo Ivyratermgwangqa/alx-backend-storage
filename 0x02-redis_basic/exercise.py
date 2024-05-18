@@ -71,7 +71,9 @@ def replay(method: Callable):
     outputs = redis_instance.lrange(outputs_key, 0, -1)
     print(f"{method.__qualname__} was called {len(inputs)} times:")
     for inp, out in zip(inputs, outputs):
-        print(f"{method.__qualname__}(*{inp.decode('utf-8')}) -> {out.decode('utf-8')}")
+        inp_decoded = inp.decode('utf-8')
+        out_decoded = out.decode('utf-8')
+        print(f"{method.__qualname__}(*{inp_decoded}) -> {out_decoded}")
 
 
 class Cache:
@@ -108,26 +110,25 @@ class Cache:
         self._redis.set(key, data)
         return key
 
-    def get(
+   def get(
     self, key: str, fn: Optional[Callable] = None
 ) -> Union[str, bytes, int, float, None]:
+    """
+    Retrieve data from Redis and optionally convert it using callable.
+
+    Args:
+        key (str): The key under which the data is stored.
+        fn (Optional[Callable]): A callable to convert the data.
+
+    Returns:
+        Union[str, bytes, int, float, None]: The retrieved data.
+    """
     value = self._redis.get(key)
-   """
-        Retrieve data from Redis and optionally convert it using callable.
-
-        Args:
-            key (str): The key under which the data is stored.
-            fn (Optional[Callable]): A callable to convert the data.
-
-        Returns:
-            Union[str, bytes, int, float, None]: The retrieved data.
-        """
-        value = self._redis.get(key)
-        if value is None:
-            return None
-        if fn is not None:
-            return fn(value)
-        return value
+    if value is None:
+        return None
+    if fn is not None:
+        return fn(value)
+    return value
 
     def get_str(self, key: str) -> Optional[str]:
         """
