@@ -1,3 +1,4 @@
+// my comment
 #!/bin/bash
 # List all documents in the collection "school"
 echo 'db.school.find()' | mongo my_db
