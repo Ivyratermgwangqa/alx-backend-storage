@@ -58,5 +58,5 @@ This script fetches a sample URL, caches the content, and tracks the access coun
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the Alx Curriculum.
 ```
